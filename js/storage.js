@@ -1,0 +1,9 @@
+/* Small localStorage data layer. Replace these functions with fetch calls later. */
+const IBANGA_STORAGE={theme:'ibanga-theme',project:'ibanga-projects',progress:'ibanga-progress',profile:'ibanga-profile'};
+function readStore(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
+function writeStore(key,value){localStorage.setItem(key,JSON.stringify(value))}
+function getCurrentProjectCode(){return{html:document.querySelector('#html-code')?.value||'',css:document.querySelector('#css-code')?.value||'',javascript:document.querySelector('#js-code')?.value||''}}
+function saveProject(project){const projects=readStore(IBANGA_STORAGE.project,[]);const next={id:project.id||Date.now(),name:project.name||'Untitled project',html:project.html||'',css:project.css||'',javascript:project.javascript||'',updated:new Date().toISOString()};const index=projects.findIndex(item=>item.id===next.id);if(index>=0)projects[index]=next;else projects.unshift(next);writeStore(IBANGA_STORAGE.project,projects);return next}
+function deleteProject(id){writeStore(IBANGA_STORAGE.project,readStore(IBANGA_STORAGE.project,[]).filter(item=>item.id!==id))}
+function markLessonComplete(id){const done=readStore(IBANGA_STORAGE.progress,[]);if(!done.includes(id)){done.push(id);writeStore(IBANGA_STORAGE.progress,done)}return done}
+function showToast(message,type='success'){let toast=document.querySelector('.toast');if(!toast){toast=document.createElement('div');toast.className='toast';document.body.appendChild(toast)}toast.textContent=message;toast.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}

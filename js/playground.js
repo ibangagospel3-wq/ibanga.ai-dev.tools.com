@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const ask=$('#ask-ai-code');ask?.addEventListener('click',()=>{localStorage.setItem('ibanga-ai-context',JSON.stringify(getCurrentProjectCode()));location.href='ai-assistant.html'});$('#fullscreen-preview')?.addEventListener('click',()=>$('#live-preview')?.requestFullscreen?.())});

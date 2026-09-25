@@ -1,0 +1,1 @@
+Place optimized local images here. The current frontend uses CSS mockups, so no binary assets are required to run it.
