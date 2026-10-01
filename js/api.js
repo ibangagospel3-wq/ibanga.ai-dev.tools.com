@@ -1,5 +1,3 @@
-window.IBANGA_API_BASE_URL ||= window.IBANGA_API_URL;
-
 function apiToken() {
   return localStorage.getItem('token');
 }

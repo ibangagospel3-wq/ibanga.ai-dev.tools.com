@@ -6,8 +6,13 @@ const rootPrefix =
     ? '../'
     : '';
 
+const localHosts = ['localhost', '127.0.0.1', '::1', '[::1]'];
+const defaultApiBaseUrl = localHosts.includes(location.hostname)
+  ? 'http://127.0.0.1:8000/api'
+  : 'https://ibanga-ai-dev-tools-com.onrender.com/api';
+
 window.IBANGA_API_BASE_URL ||=
-  window.IBANGA_API_URL || 'http://127.0.0.1:8000/api';
+  window.IBANGA_API_URL || defaultApiBaseUrl;
 
 if (!document.querySelector('link[rel="icon"]')) {
   const favicon = document.createElement('link');

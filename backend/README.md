@@ -74,7 +74,7 @@ The included tests cover password policy, AI topic restriction, and service avai
 
 ## Production checklist
 
-Use HTTPS, a unique secret, a production PostgreSQL URL, restricted `FRONTEND_URL`, a reverse proxy, structured logging, a real rate-limit store such as Redis, secure refresh tokens, and server-side validation. Do not use wildcard CORS in production.
+Use HTTPS, a unique secret, and a production PostgreSQL URL. Configure the Render `FRONTEND_URL` environment variable as the frontend origin only (for GitHub Pages, `https://ibangagospel3-wq.github.io`; do not include the repository path). That origin and the local development origins are allowed by CORS. The API also normalizes a configured URL to its origin. Never use wildcard CORS with credentials or commit secrets. A reverse proxy, structured logging, a real rate-limit store such as Redis, secure refresh tokens, and server-side validation are also recommended.
 
 ## API groups
 
